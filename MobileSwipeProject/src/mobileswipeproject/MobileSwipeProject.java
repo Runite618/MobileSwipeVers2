@@ -24,10 +24,12 @@ import javax.swing.UIManager;
  * @author matth
  */
 public class MobileSwipeProject extends JApplet {
-    
-    private static final int JFXPANEL_WIDTH_INT = 300;
-    private static final int JFXPANEL_HEIGHT_INT = 250;
+//    
+//    private static final int JFXPANEL_WIDTH_INT = 300;
+//    private static final int JFXPANEL_HEIGHT_INT = 250;
     private static JFXPanel fxContainer;
+    private static final int JFXPANEL_WIDTH_INT = 375;
+    private static final int JFXPANEL_HEIGHT_INT = 667;
 
     /**
      * @param args the command line arguments
@@ -42,7 +44,7 @@ public class MobileSwipeProject extends JApplet {
                 } catch (Exception e) {
                 }
                 
-                JFrame frame = new JFrame("JavaFX 2 in Swing");
+                JFrame frame = new JFrame("Mobile Swipe Project");
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 
                 JApplet applet = new MobileSwipeProject();
@@ -76,7 +78,7 @@ public class MobileSwipeProject extends JApplet {
     
     private void createScene() {
         Button btn = new Button();
-        btn.setText("Say 'Hello World'");
+        btn.setText("Start");
         btn.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
@@ -88,5 +90,4 @@ public class MobileSwipeProject extends JApplet {
         root.getChildren().add(btn);
         fxContainer.setScene(new Scene(root));
     }
-    
 }
