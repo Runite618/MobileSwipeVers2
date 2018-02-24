@@ -15,12 +15,28 @@ import javax.swing.JPanel;
  */
 public class MouseMotionEvent extends JPanel implements MouseMotionListener{
 
-    int previousY;
-    boolean dirUp;
+    private int previousY;
+    private boolean dirUp;
+    private int count = 0;
+    
+    public int getCount() {
+        return count;
+    }
+    
+    public MouseMotionEvent() {
+        
+    }
+    
+    public MouseMotionEvent(int previousY, boolean dirUp, int count) {
+        this.previousY = previousY;
+        this.dirUp = dirUp;
+        this.count = count;
+    }
     
     @Override
     public void mouseDragged(MouseEvent me) {
         previousY = me.getY();
+        count++;
     }
 
     @Override
@@ -32,5 +48,9 @@ public class MouseMotionEvent extends JPanel implements MouseMotionListener{
         else if (y > previousY) {
             dirUp = false;
         }
+    }
+    
+    public void noOfDrags(MouseEvent me) {
+        System.out.println(count);
     }
 }

@@ -52,6 +52,12 @@ public class MobileSwipeProject extends JApplet {
                 
                 frame.setContentPane(applet.getContentPane());
                 
+                MouseMotionEvent mouseMotionEvent = new MouseMotionEvent();
+                
+                if(mouseMotionEvent.getCount() % 5 == 0) {
+                    System.out.println(mouseMotionEvent.getCount());
+                }
+                
                 frame.pack();
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
@@ -83,7 +89,6 @@ public class MobileSwipeProject extends JApplet {
             
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
             }
         });
         StackPane root = new StackPane();
