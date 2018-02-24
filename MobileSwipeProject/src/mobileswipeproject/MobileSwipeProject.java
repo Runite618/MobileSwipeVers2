@@ -52,12 +52,6 @@ public class MobileSwipeProject extends JApplet {
                 
                 frame.setContentPane(applet.getContentPane());
                 
-                MouseMotionEvent mouseMotionEvent = new MouseMotionEvent();
-                
-                if(mouseMotionEvent.getCount() % 5 == 0) {
-                    System.out.println(mouseMotionEvent.getCount());
-                }
-                
                 frame.pack();
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
@@ -72,6 +66,8 @@ public class MobileSwipeProject extends JApplet {
         fxContainer = new JFXPanel();
         fxContainer.setPreferredSize(new Dimension(JFXPANEL_WIDTH_INT, JFXPANEL_HEIGHT_INT));
         add(fxContainer, BorderLayout.CENTER);
+        MouseMotionEvent mouseMotionEvent = new MouseMotionEvent();
+        fxContainer.addMouseMotionListener(mouseMotionEvent);
         // create JavaFX scene
         Platform.runLater(new Runnable() {
             

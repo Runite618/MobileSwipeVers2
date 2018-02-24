@@ -37,6 +37,7 @@ public class MouseMotionEvent extends JPanel implements MouseMotionListener{
     public void mouseDragged(MouseEvent me) {
         previousY = me.getY();
         count++;
+        System.out.println(count);
     }
 
     @Override
@@ -48,9 +49,5 @@ public class MouseMotionEvent extends JPanel implements MouseMotionListener{
         else if (y > previousY) {
             dirUp = false;
         }
-    }
-    
-    public void noOfDrags(MouseEvent me) {
-        System.out.println(count);
     }
 }
