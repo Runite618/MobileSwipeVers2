@@ -67,6 +67,7 @@ public class MobileSwipeProject extends JApplet {
         fxContainer.setPreferredSize(new Dimension(JFXPANEL_WIDTH_INT, JFXPANEL_HEIGHT_INT));
         add(fxContainer, BorderLayout.CENTER);
         MouseMotionEvent mouseMotionEvent = new MouseMotionEvent();
+        fxContainer.addMouseListener(mouseMotionEvent);
         fxContainer.addMouseMotionListener(mouseMotionEvent);
         // create JavaFX scene
         Platform.runLater(new Runnable() {

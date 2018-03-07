@@ -6,6 +6,7 @@
 package mobileswipeproject;
 
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import javax.swing.JPanel;
 
@@ -13,11 +14,20 @@ import javax.swing.JPanel;
  *
  * @author matth
  */
-public class MouseMotionEvent extends JPanel implements MouseMotionListener{
+public class MouseMotionEvent extends JPanel implements MouseListener, MouseMotionListener{
 
     private int previousY;
     private boolean dirUp;
+    private boolean dragging;
     private int count = 0;
+    
+    public boolean getDragging() {
+        return dragging;
+    }
+    
+    public void setDragging(boolean dragging) {
+        this.dragging = dragging;
+    }
     
     public int getCount() {
         return count;
@@ -36,10 +46,20 @@ public class MouseMotionEvent extends JPanel implements MouseMotionListener{
     @Override
     public void mouseDragged(MouseEvent me) {
         previousY = me.getY();
-        count++;
-        System.out.println(count);
+        setDragging(true);
+//        count++;
+//        System.out.println(count);
     }
 
+    @Override
+    public void mouseReleased(MouseEvent me) {
+        if(getDragging()) {
+            dragging = false;
+            count++;
+            System.out.println(count);
+        }
+    }
+    
     @Override
     public void mouseMoved(MouseEvent me) {
         int y = me.getY();
@@ -49,5 +69,21 @@ public class MouseMotionEvent extends JPanel implements MouseMotionListener{
         else if (y > previousY) {
             dirUp = false;
         }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent me) {
+    }
+
+    @Override
+    public void mousePressed(MouseEvent me) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent me) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent me) {
     }
 }
