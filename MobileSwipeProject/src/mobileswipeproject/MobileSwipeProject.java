@@ -67,25 +67,25 @@ public class MobileSwipeProject extends JApplet {
         fxContainer.setPreferredSize(new Dimension(JFXPANEL_WIDTH_INT, JFXPANEL_HEIGHT_INT));
         add(fxContainer, BorderLayout.CENTER);
         MouseMotionEvent mouseMotionEvent = new MouseMotionEvent();
-        fxContainer.addMouseListener(mouseMotionEvent);
-        fxContainer.addMouseMotionListener(mouseMotionEvent);
         // create JavaFX scene
         Platform.runLater(new Runnable() {
             
             @Override
             public void run() {
-                createScene();
+                createScene(mouseMotionEvent);
             }
         });
     }
     
-    private void createScene() {
+    private void createScene(MouseMotionEvent mouseMotionEvent) {
         Button btn = new Button();
         btn.setText("Start");
         btn.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
             public void handle(ActionEvent event) {
+                fxContainer.addMouseListener(mouseMotionEvent);
+                fxContainer.addMouseMotionListener(mouseMotionEvent);
             }
         });
         StackPane root = new StackPane();
