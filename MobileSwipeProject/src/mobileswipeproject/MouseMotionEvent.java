@@ -54,7 +54,7 @@ public class MouseMotionEvent extends JPanel implements MouseListener, MouseMoti
     @Override
     public void mouseReleased(MouseEvent me) {
         if(getDragging()) {
-            dragging = false;
+            setDragging(false);
             count++;
             System.out.println(count);
         }
