@@ -19,23 +19,43 @@ public class MouseMotionEvent extends JPanel implements MouseListener, MouseMoti
     private int previousY;
     private int count = 0;
     private String dir;
+    private boolean changedDir = false;
 
+    public void addDrags() {
+        count++;
+        System.out.println(count);
+    }
+    
     @Override
     public void mouseDragged(MouseEvent me) {
         int y = me.getY();
-        if (y < previousY) {
-            dir = "up";
-        }
-        else if (y > previousY) {
-            dir = "down";
+        if (changedDir == false) {
+            if (y < previousY) {
+                if (dir == "down") {
+                    changedDir = true;
+                    addDrags();
+                } else {
+                    dir = "up";
+                }
+            } else if (y > previousY) {
+                if (dir == "up") {
+                    changedDir = true;
+                    addDrags();
+                } else {
+                    dir = "down";
+                }
+            }
         }
     }
 
     @Override
     public void mouseReleased(MouseEvent me) {
-        if(dir == "up" || dir == "down") {
-            count++;
-            System.out.println(count);
+        if(!changedDir) {
+            addDrags();
+            changedDir = false;
+        }
+        if(changedDir) {
+            changedDir = false;
         }
     }
     
