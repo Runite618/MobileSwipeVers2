@@ -18,12 +18,10 @@ public class MouseMotionEvent extends JPanel implements MouseListener, MouseMoti
 
     private int previousY;
     private boolean dirUp;
-    private boolean dragging;
     private int count = 0;
 
     @Override
     public void mouseDragged(MouseEvent me) {
-        dragging = true;
         int y = me.getY();
         if (y < previousY) {
             dirUp = true;
@@ -35,8 +33,7 @@ public class MouseMotionEvent extends JPanel implements MouseListener, MouseMoti
 
     @Override
     public void mouseReleased(MouseEvent me) {
-        if(dragging && !dirUp) {
-            dragging = false;
+        if(!dirUp) {
             count++;
             System.out.println(count);
         }
