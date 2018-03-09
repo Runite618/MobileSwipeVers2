@@ -17,23 +17,23 @@ import javax.swing.JPanel;
 public class MouseMotionEvent extends JPanel implements MouseListener, MouseMotionListener{
 
     private int previousY;
-    private boolean dirUp;
     private int count = 0;
+    private String dir;
 
     @Override
     public void mouseDragged(MouseEvent me) {
         int y = me.getY();
         if (y < previousY) {
-            dirUp = true;
+            dir = "up";
         }
         else if (y > previousY) {
-            dirUp = false;
+            dir = "down";
         }
     }
 
     @Override
     public void mouseReleased(MouseEvent me) {
-        if(!dirUp) {
+        if(dir == "up" || dir == "down") {
             count++;
             System.out.println(count);
         }
