@@ -32,22 +32,24 @@ public class MouseMotionEvent extends JPanel implements MouseListener, MouseMoti
     public int getCount() {
         return count;
     }
-    
-    public MouseMotionEvent() {
-        
-    }
 
     @Override
     public void mouseDragged(MouseEvent me) {
-        previousY = me.getY();
         setDragging(true);
+        int y = me.getY();
+        if (y < previousY) {
+            dirUp = true;
+        }
+        else if (y > previousY) {
+            dirUp = false;
+        }
 //        count++;
 //        System.out.println(count);
     }
 
     @Override
     public void mouseReleased(MouseEvent me) {
-        if(getDragging()) {
+        if(getDragging() && !dirUp) {
             setDragging(false);
             count++;
             System.out.println(count);
@@ -56,13 +58,6 @@ public class MouseMotionEvent extends JPanel implements MouseListener, MouseMoti
     
     @Override
     public void mouseMoved(MouseEvent me) {
-        int y = me.getY();
-        if (y < previousY) {
-            dirUp = true;
-        }
-        else if (y > previousY) {
-            dirUp = false;
-        }
     }
 
     @Override
@@ -71,6 +66,7 @@ public class MouseMotionEvent extends JPanel implements MouseListener, MouseMoti
 
     @Override
     public void mousePressed(MouseEvent me) {
+        previousY = me.getY();
     }
 
     @Override
