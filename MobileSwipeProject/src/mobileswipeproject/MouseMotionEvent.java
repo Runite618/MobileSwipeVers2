@@ -36,13 +36,7 @@ public class MouseMotionEvent extends JPanel implements MouseListener, MouseMoti
     public MouseMotionEvent() {
         
     }
-    
-    public MouseMotionEvent(int previousY, boolean dirUp, int count) {
-        this.previousY = previousY;
-        this.dirUp = dirUp;
-        this.count = count;
-    }
-    
+
     @Override
     public void mouseDragged(MouseEvent me) {
         previousY = me.getY();
