@@ -16,7 +16,7 @@ import javax.swing.JPanel;
  */
 public class MouseMotionEvent extends JPanel implements MouseListener, MouseMotionListener{
 
-    private int previousY;
+    private int previousY, y;
     private int count = 0;
     private String dir;
     private boolean changedDir = false;
@@ -28,7 +28,8 @@ public class MouseMotionEvent extends JPanel implements MouseListener, MouseMoti
     
     @Override
     public void mouseDragged(MouseEvent me) {
-        int y = me.getY();
+        previousY = y;
+        y = me.getY();
         if (changedDir == false) {
             if (y < previousY) {
                 if (dir == "down") {
