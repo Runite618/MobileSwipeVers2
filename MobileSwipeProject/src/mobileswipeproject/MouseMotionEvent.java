@@ -8,24 +8,40 @@ package mobileswipeproject;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
  *
  * @author matth
  */
-public class MouseMotionEvent extends JPanel implements MouseListener, MouseMotionListener{
+public class MouseMotionEvent extends JPanel implements MouseListener, MouseMotionListener, Runnable {
 
     private int previousY, y;
-    private int count = 0;
+    private static int count = 0;
     private String dir;
     private boolean changedDir = false;
+    private static Timer timer = new Timer();
+
+    public static void myTimer() {
+        TimerTask task;
+
+        task = new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println(count);
+            }
+        };
+        timer.schedule(task, 1000);
+    }
 
     public void addDrags() {
         count++;
-        System.out.println(count);
     }
-    
+
     @Override
     public void mouseDragged(MouseEvent me) {
         previousY = y;
@@ -51,20 +67,20 @@ public class MouseMotionEvent extends JPanel implements MouseListener, MouseMoti
 
     @Override
     public void mouseReleased(MouseEvent me) {
-        if(!changedDir) {
+        if (!changedDir) {
             addDrags();
             changedDir = false;
         }
-        if(changedDir) {
+        if (changedDir) {
             changedDir = false;
         }
     }
-    
+
     @Override
     public void mousePressed(MouseEvent me) {
         previousY = me.getY();
     }
-    
+
     @Override
     public void mouseMoved(MouseEvent me) {
     }
@@ -79,5 +95,10 @@ public class MouseMotionEvent extends JPanel implements MouseListener, MouseMoti
 
     @Override
     public void mouseExited(MouseEvent me) {
+    }
+
+    @Override
+    public void run() {
+        myTimer();
     }
 }

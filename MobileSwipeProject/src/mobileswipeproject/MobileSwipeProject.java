@@ -84,6 +84,8 @@ public class MobileSwipeProject extends JApplet {
             
             @Override
             public void handle(ActionEvent event) {
+                Thread mouseMotionThread = new Thread(mouseMotionEvent);
+                mouseMotionThread.start();
                 fxContainer.addMouseListener(mouseMotionEvent);
                 fxContainer.addMouseMotionListener(mouseMotionEvent);
             }
