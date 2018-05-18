@@ -24,6 +24,7 @@ public class MouseMotionEvent extends JPanel implements MouseListener, MouseMoti
     private static int count = 0;
     private String dir;
     private boolean changedDir = false;
+    private static boolean flag = false;
     private static Timer timer;
     
     public static void myTimer() {
@@ -34,6 +35,7 @@ public class MouseMotionEvent extends JPanel implements MouseListener, MouseMoti
             @Override
             public void run() {
                 System.out.println(count);
+                flag = true;
             }
         };
         timer.schedule(task, 1000);
@@ -42,7 +44,9 @@ public class MouseMotionEvent extends JPanel implements MouseListener, MouseMoti
     public void addDrags() {
         count++;
         timer.cancel();
-        myTimer();
+        if(!flag) {
+            myTimer();
+        }
     }
 
     @Override
